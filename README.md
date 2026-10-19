@@ -1,6 +1,6 @@
 # vprofile CI/CD Pipeline
 
-A Jenkins declarative pipeline that builds, tests, analyzes, and publishes a Java web application (vprofile) to a Nexus Repository Manager. The project was built as part of a hands-on DevOps course and extended with [your additions, e.g., "a quality gate that blocks bad code from being published"].
+A Jenkins declarative pipeline that builds, tests, analyzes, and publishes a Java web application (vprofile) to a Nexus Repository Manager. The project was built as part of a hands-on DevOps course
 
 ## Pipeline Stages
 
@@ -53,11 +53,9 @@ The pipeline's main settings are in the `environment` block of the `Jenkinsfile`
 
 ## Lessons Learned
 
-[Optional, but recruiters like this section. Add 2 to 3 real problems you hit and how you solved them, for example:]
-
-- Configuring credential scoping so Jenkins could reach SonarQube
-- Diagnosing why the quality gate timed out
-- Understanding how Nexus handles versioned artifacts
+- **Connecting Jenkins to SonarQube:** Getting the pipeline to reach SonarQube meant aligning the port (9000), the AWS security group rules, and the Jenkins server configuration. A mismatch in any one of them breaks the connection.
+- **Debugging a quality gate timeout:** The `waitForQualityGate` step timed out because the gate was still using the default thresholds instead of the ones I configured. I fixed it by changing the thresholds to the one i configured.
+- **Versioning artifacts in Nexus:** Setting `ARTVERSION` to `${env.BUILD_ID}` gives every build a unique version, so each upload is a new artifact instead of overwriting the last one.
 
 ## Possible Improvements
 
@@ -67,4 +65,4 @@ The pipeline's main settings are in the `environment` block of the `Jenkinsfile`
 
 ## Author
 
-[Your name] · [LinkedIn] · [Email]
+Ayoola Emmanuel · www.linkedin.com/in/emmanuel-ayoola-11ba85287 · temitopeayoola2005@gmail.com
